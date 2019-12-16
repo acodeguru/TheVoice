@@ -1,0 +1,43 @@
+<div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+        placeholder="&#61442;  Start searching for a name">
+</div>
+<table class="table" *ngIf="candidateDetails.candidate_detail">
+    <thead class="thead-light">
+        <tr>
+            <th>Event Date</th>
+            <th>Song Name </th>
+            <th>Mentor Name</th>
+            <th>Average Score </th>
+            <th>Average Score Teams</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let candidateDetail of candidateDetails.candidate_detail | filter:searchText">
+            <td>{{candidateDetail.event_date}}</td>
+            <td>{{candidateDetail.song_name}}</td>
+            <td>{{candidateDetail.mentor_name}}</td>
+            <td>{{candidateDetail.score}}</td>
+            <td>{{candidateDetails.mentor_avgscore.score}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table" *ngIf="!candidateDetails.candidate_detail">
+    <thead class="thead-light">
+        <tr>
+            <th>Event Date</th>
+            <th>Song Name </th>
+            <th>Mentor Name</th>
+            <th>Given Score </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let candidateDetail of candidateDetails | filter:searchText">
+            <td>{{candidateDetail.event_date}}</td>
+            <td>{{candidateDetail.song_name}}</td>
+            <td>{{candidateDetail.mentor_name}}</td>
+            <td>{{candidateDetail.score}}</td>
+        </tr>
+    </tbody>
+</table>

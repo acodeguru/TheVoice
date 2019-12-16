@@ -1,0 +1,32 @@
+<div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a name">
+  </div>
+<table class="table" *ngIf="dashboardelemets" >
+    <thead class="thead-light">
+      <tr>
+        <th>Candidate Names </th>
+        <th >Mentor Name</th>
+        <th>Average Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let dashboardDetail of dahboardDetails | filter:searchText">
+        <td ><a [routerLink]="['/candidate',dashboardDetail.candidate_id]">{{dashboardDetail.candidate_name}}</a></td>
+        <td >{{dashboardDetail.mentor_name}}</td>
+        <td >{{dashboardDetail.score}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <table class="table" *ngIf="!dashboardelemets" >
+      <thead class="thead-light">
+        <tr>
+          <th>Mentored Team Candidate Names </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let dashboardDetail of dahboardDetails | filter:searchText">
+          <td ><a [routerLink]="['/candidate',dashboardDetail.candidate_id]">{{dashboardDetail.candidate_name}}</a></td>
+        </tr>
+      </tbody>
+    </table>
